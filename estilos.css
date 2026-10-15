@@ -38,8 +38,6 @@ button {
     min-height: 100vh;
 }
 
-/* BARRA LATERAL */
-
 .sidebar {
     width: 245px;
     flex-shrink: 0;
@@ -111,8 +109,6 @@ button {
 .sidebar-footer small {
     color: #8992a6;
 }
-
-/* CONTENIDO */
 
 .contenido {
     flex: 1;
@@ -233,8 +229,6 @@ textarea {
     resize: vertical;
 }
 
-/* CATEGORÍAS */
-
 .categorias {
     display: flex;
     flex-wrap: wrap;
@@ -256,8 +250,6 @@ textarea {
     color: #5846cb;
     border-color: #c9c1ff;
 }
-
-/* PRODUCTOS */
 
 .productos-grid {
     display: grid;
@@ -322,8 +314,6 @@ textarea {
     cursor: not-allowed;
 }
 
-/* CARRITO */
-
 .btn-icono {
     border: 0;
     background: #fff0f1;
@@ -385,8 +375,6 @@ textarea {
     cursor: not-allowed;
 }
 
-/* TOTALES */
-
 .totales {
     border-top: 1px solid var(--borde);
     padding-top: 16px;
@@ -445,8 +433,6 @@ textarea {
     color: #c02c43;
 }
 
-/* BOTÓN UIVERSE.IO BY ADAMGIEBL */
-
 .cssbuttons-io-button {
     display: flex;
     align-items: center;
@@ -484,7 +470,6 @@ textarea {
     box-shadow: 0 0.3em 1em -0.5em #4d36d0be;
 }
 
-/* PEDIDOS */
 
 .filtros {
     display: flex;
@@ -572,8 +557,6 @@ textarea {
     color: #4a5bb4;
 }
 
-/* INVENTARIO */
-
 .inventario-item {
     display: flex;
     align-items: center;
@@ -611,8 +594,6 @@ textarea {
     border-radius: 12px;
     font-size: 13px;
 }
-
-/* REPORTES */
 
 .estadisticas {
     display: grid;
@@ -661,8 +642,6 @@ textarea {
     background: linear-gradient(90deg, #7565f5, #a99cff);
     border-radius: 20px;
 }
-
-/* NOTIFICACIONES */
 
 .notificacion {
     position: fixed;

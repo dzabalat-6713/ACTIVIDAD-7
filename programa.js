@@ -1,10 +1,6 @@
 
 "use strict";
 
-// ==========================================
-// NOVABITE PRO - SISTEMA DE RESTAURANTE
-// ==========================================
-
 const $ = id => document.getElementById(id);
 
 const PRODUCTOS = [
@@ -74,10 +70,6 @@ function fechaDia(iso) {
     ].join("-");
 }
 
-// ==========================================
-// INICIALIZACIÓN DE INVENTARIO
-// ==========================================
-
 async function iniciarInventario() {
     await db.transaction("rw", db.inventario, async () => {
         for (const producto of PRODUCTOS) {
@@ -105,9 +97,6 @@ async function cargarInventario() {
     renderInventario();
 }
 
-// ==========================================
-// NAVEGACIÓN
-// ==========================================
 
 document.querySelectorAll(".nav-btn").forEach(boton => {
     boton.addEventListener("click", () => {
@@ -135,10 +124,6 @@ document.querySelectorAll(".nav-btn").forEach(boton => {
         $("tituloVista").textContent = titulos[vista];
     });
 });
-
-// ==========================================
-// MENÚ DE PRODUCTOS
-// ==========================================
 
 function renderProductos() {
     const busqueda = $("buscarProducto").value
@@ -192,10 +177,6 @@ $("gridProductos").addEventListener("click", event => {
     const boton = event.target.closest("[data-agregar]");
     if (boton) agregarProducto(boton.dataset.agregar);
 });
-
-// ==========================================
-// CARRITO
-// ==========================================
 
 function agregarProducto(id) {
     const producto = PRODUCTOS.find(p => p.id === id);
@@ -283,13 +264,6 @@ function renderCarrito() {
     calcularTotales();
 }
 
-// ==========================================
-// CÁLCULOS MONETARIOS
-// ==========================================
-
-// Trabajamos en centavos para evitar errores
-// de precisión con decimales.
-
 const centavos = valor => Math.round(Number(valor) * 100);
 
 function calcularTotales() {
@@ -345,10 +319,6 @@ $("metodoPago").addEventListener("change", () => {
     calcularTotales();
 });
 
-// ==========================================
-// GUARDAR Y COBRAR PEDIDO
-// ==========================================
-
 $("guardarPedido").addEventListener("click", async () => {
     const nombre = $("nombreCliente").value.trim();
 
@@ -391,7 +361,6 @@ $("guardarPedido").addEventListener("click", async () => {
     };
 
     try {
-        // Guardar pedido y descontar stock juntos.
         await db.transaction(
             "rw",
             db.pedidos,
@@ -445,10 +414,6 @@ $("guardarPedido").addEventListener("click", async () => {
         boton.disabled = false;
     }
 });
-
-// ==========================================
-// FACTURAS PDF
-// ==========================================
 
 function generarPDF(pedido) {
     if (!window.jspdf?.jsPDF) {
@@ -583,10 +548,6 @@ $("descargarFactura").addEventListener("click", () => {
     if (ultimoPedido) generarPDF(ultimoPedido);
 });
 
-// ==========================================
-// HISTORIAL DE PEDIDOS
-// ==========================================
-
 async function cargarPedidos() {
     pedidos = await db.pedidos.orderBy("id").reverse().toArray();
 
@@ -677,10 +638,6 @@ $("listaPedidos").addEventListener("change", async event => {
     }
 });
 
-// ==========================================
-// INVENTARIO
-// ==========================================
-
 function renderInventario() {
     $("listaInventario").innerHTML = PRODUCTOS.map(p => `
         <div class="inventario-item">
@@ -727,10 +684,6 @@ $("listaInventario").addEventListener("click", async event => {
         avisar("Error al guardar inventario.");
     }
 });
-
-// ==========================================
-// REPORTES
-// ==========================================
 
 function renderReportes() {
     const ventas = pedidos.reduce(
@@ -779,10 +732,6 @@ function renderReportes() {
         `
     ).join("") || "<p>Todavía no hay ventas.</p>";
 }
-
-// ==========================================
-// EXPORTAR CSV
-// ==========================================
 
 function csvSeguro(valor) {
     let texto = String(valor ?? "");
@@ -840,9 +789,6 @@ $("exportarCSV").addEventListener("click", () => {
     setTimeout(() => URL.revokeObjectURL(url),1000);
 });
 
-// ==========================================
-// ELIMINAR HISTORIAL
-// ==========================================
 
 $("borrarHistorial").addEventListener("click", async () => {
     if (!confirm(
@@ -864,10 +810,6 @@ $("borrarHistorial").addEventListener("click", async () => {
         avisar("Error al eliminar historial.");
     }
 });
-
-// ==========================================
-// INICIAR APLICACIÓN
-// ==========================================
 
 async function iniciar() {
     $("fechaActual").textContent =
